@@ -7,4 +7,14 @@ jobs:
   - pool:
     vmImage: "Ubuntu-16.04"
 
-- script: echo "Hello World"
+steps:
+  - script: |
+    pip install -U pip
+    pip install -r requirements.txt
+  displayName: "install things"
+  - script: |
+    python -m pip install pylint --quiet
+    pylint boston/*.py
+    pyline iris/*.py
+    displayName: "run lint tests"
+
