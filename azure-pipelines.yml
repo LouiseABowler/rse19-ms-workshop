@@ -7,22 +7,22 @@ jobs:
     pool:
       vmImage: "Ubuntu-16.04"
 
-steps:
-  - script: python -m pip install --upgrade pip
-    displayName: "Upgrade pip"
+    steps:
+      - script: python -m pip install --upgrade pip
+        displayName: "Upgrade pip"
 
-  - script: |
-      pip install -r requirements.txt
-    displayName: 'Install dependencies'
+      - script: |
+          pip install -r requirements.txt
+        displayName: 'Install dependencies'
 
-  - script: |
-      python -m pip install pylint --quiet
-      pylint boston/*.py
-      pylint iris/*.py
-    displayName: 'Run lint tests'
+      - script: |
+          python -m pip install pylint --quiet
+          pylint boston/*.py
+          pylint iris/*.py
+        displayName: 'Run lint tests'
 
-  - script: |
-      pip install pytest pytest-azurepipelines
-      python -m pytest tests/
-    displayName: 'Test with pytest'
+      - script: |
+          pip install pytest pytest-azurepipelines
+          python -m pytest tests/
+        displayName: 'Test with pytest'
 
